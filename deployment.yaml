@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-website-deployment
+  labels:
+    app: php-website
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: php-website
+  template:
+    metadata:
+      labels:
+        app: php-website
+    spec:
+      containers:
+      - name: php-website-container
+        image: your-dockerhub-username/basic-php-website:latest # <-- Change this after building and pushing
+        ports:
+        - containerPort: 80
